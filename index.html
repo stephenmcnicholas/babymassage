@@ -48,17 +48,241 @@
     img { max-width: 100%; display: block; }
     a { color: var(--accent-dark); text-decoration: underline; }
     a:hover { color: var(--accent); }
+
+/* === Navigation === */
+#site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.nav-logo img {
+  height: 44px;
+  width: auto;
+}
+.nav-logo span {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  letter-spacing: 0.03em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0;
+}
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+.nav-links li + li::before {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: var(--divider);
+  margin: 0 18px;
+}
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* Hamburger — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--accent-dark);
+  transition: all 0.3s;
+}
+
+/* Mobile nav overlay — hidden by default */
+.nav-mobile {
+  display: none;
+}
+
+/* === Welcome / Hero === */
+#welcome {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('images/background.jpg') center center / cover no-repeat;
+}
+#welcome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+.welcome-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(2px);
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 50px 50px;
+  text-align: center;
+}
+.welcome-box h1 {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 24px;
+  letter-spacing: 0.04em;
+}
+.welcome-box p {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  line-height: 1.75;
+}
+
+/* === Shared two-column layout === */
+.two-col {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.two-col .col-text { flex: 1; }
+.two-col .col-img  { flex: 1; }
+.two-col .col-img img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+/* === Section shared styles === */
+.section-inner {
+  padding: var(--section-pad) 40px;
+}
+.section-inner h2 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 28px;
+  letter-spacing: 0.03em;
+}
+.section-inner p {
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+/* === About Me specifics === */
+#about { background: var(--bg); }
   </style>
 </head>
 <body>
 
   <!-- NAVIGATION -->
-  <header id="site-nav"><!-- Task 3 --></header>
+  <header id="site-nav">
+  <a class="nav-logo" href="#welcome">
+    <img src="logo.png" alt="Baby &amp; Palm logo" />
+    <!-- EDIT: change the text below to update the site name in the nav -->
+    <span>Baby &amp; Palm</span>
+  </a>
+
+  <ul class="nav-links" id="nav-links-desktop">
+    <li><a href="#welcome">Welcome</a></li>
+    <li><a href="#about">About Me</a></li>
+    <li><a href="#massage">Baby Massage</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Mobile dropdown nav — toggled by JS -->
+<nav class="nav-mobile" id="nav-mobile">
+  <ul>
+    <li><a href="#welcome" onclick="closeMobileNav()">Welcome</a></li>
+    <li><a href="#about" onclick="closeMobileNav()">About Me</a></li>
+    <li><a href="#massage" onclick="closeMobileNav()">Baby Massage</a></li>
+    <li><a href="#courses" onclick="closeMobileNav()">Courses</a></li>
+    <li><a href="#contact" onclick="closeMobileNav()">Contact</a></li>
+  </ul>
+</nav>
 
   <!-- SECTIONS -->
   <main>
-    <section id="welcome"><!-- Task 4 --></section>
-    <section id="about"><!-- Task 5 --></section>
+    <section id="welcome">
+  <div class="welcome-box">
+    <!-- EDIT: Welcome heading -->
+    <h1>Welcome</h1>
+    <!-- EDIT: Welcome paragraph 1 — introduce the business and location -->
+    <p>At Baby &amp; Palm I offer warm, nurturing baby massage classes in the heart of the beautiful South Downs town of Petersfield, and across the surrounding Hampshire countryside.</p>
+    <!-- EDIT: Welcome paragraph 2 — who is welcome / what to expect -->
+    <p>Whether you are a first-time parent finding your feet, or looking to deepen the bond with your growing baby, you are very welcome here. Classes are small, friendly, and designed to fit around the reality of early parenthood.</p>
+    <!-- EDIT: Welcome paragraph 3 — warmth / invitation -->
+    <p>My aim is to give you and your baby a calm, joyful space — a little pocket of time each week that is just for the two of you.</p>
+  </div>
+</section>
+    <section id="about">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="col-text">
+        <!-- EDIT: About Me heading -->
+        <h2>About Me</h2>
+        <!-- EDIT: Bio paragraph 1 — introduce Katherine, paediatric nurse background -->
+        <p>Hello, I'm Katherine Rivers — a registered paediatric nurse with many years of clinical experience caring for babies and young children. That background has given me a deep understanding of infant development, and an even deeper appreciation of how much the early weeks and months matter for both baby and parent.</p>
+        <!-- EDIT: Bio paragraph 2 — IAIM certification and training -->
+        <p>I am a certified Infant Massage Instructor, trained and accredited by the International Association of Infant Massage (IAIM). My training was completed through Baby &amp; Child Massage, one of the UK's leading centres for infant massage instructor education.</p>
+        <!-- EDIT: Bio paragraph 3 — personal warmth / local connection -->
+        <p>I live locally and know how precious — and how exhausting — the early days can be. My classes are designed to be a genuinely restful, sociable, and restorative part of your week: for your baby, and for you.</p>
+      </div>
+      <div class="col-img">
+        <!-- EDIT: replace the src below with Katherine's photo path, e.g. src="images/katherine.jpg" -->
+        <img
+          src="https://images.unsplash.com/photo-1524863479829-916d8e77f114?w=600&q=80"
+          alt="Katherine Rivers — Baby &amp; Palm instructor"
+        />
+        <!-- NOTE: the Unsplash URL above is a free placeholder. Replace with Katherine's actual photo. -->
+      </div>
+    </div>
+  </div>
+</section>
     <section id="massage"><!-- Task 6 --></section>
     <section id="courses"><!-- Task 7 --></section>
     <section id="contact"><!-- Task 8 --></section>
