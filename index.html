@@ -19,7 +19,7 @@
       --text:         #3a3a3a;   /* main body text */
       --text-light:   #ffffff;   /* text on dark/image backgrounds */
       --bg:           #ffffff;   /* page background */
-      --divider:      #7a9e7e;   /* nav separator colour */
+      --divider:      var(--accent);   /* nav separator colour — tied to --accent automatically */
 
       /* ============================================================
          === EDIT ME: Fonts                                       ===
@@ -375,13 +375,15 @@
     <span>Baby &amp; Palm</span>
   </a>
 
-  <ul class="nav-links" id="nav-links-desktop">
-    <li><a href="#welcome">Welcome</a></li>
-    <li><a href="#about">About Me</a></li>
-    <li><a href="#massage">Baby Massage</a></li>
-    <li><a href="#courses">Courses</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <nav aria-label="Main navigation">
+    <ul class="nav-links" id="nav-links-desktop">
+      <li><a href="#welcome">Welcome</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#massage">Baby Massage</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
   <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -523,7 +525,8 @@
     const mobileNav = document.getElementById('nav-mobile');
 
     hamburger.addEventListener('click', function () {
-      mobileNav.classList.toggle('open');
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
     });
 
     // Close mobile nav when a link is clicked
