@@ -292,6 +292,77 @@
   color: #888;
   text-decoration: underline;
 }
+
+    /* ============================================================
+       === Mobile / responsive styles (max-width: 768px)        ===
+       ============================================================ */
+    @media (max-width: 768px) {
+
+      /* Nav: hide desktop links, show hamburger */
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      #site-nav { padding: 0 20px; }
+
+      /* Mobile nav overlay */
+      .nav-mobile {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        z-index: 99;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        /* hidden by default — JS adds .open to show */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      .nav-mobile.open {
+        max-height: 340px;
+      }
+      .nav-mobile ul {
+        list-style: none;
+        text-align: center;
+      }
+      .nav-mobile ul li {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--accent-light);
+      }
+      .nav-mobile ul li:last-child { border-bottom: none; }
+      .nav-mobile ul li a {
+        font-family: var(--font-body);
+        font-size: 1.05rem;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+      .nav-mobile ul li a:hover { color: var(--accent); }
+
+      /* Hero */
+      .welcome-box {
+        padding: 36px 24px;
+        margin: 20px;
+      }
+      .welcome-box h1 { font-size: 2.6rem; }
+
+      /* Two-column sections stack vertically */
+      .two-col {
+        flex-direction: column !important;
+        gap: 30px;
+      }
+      .two-col .col-img img {
+        height: 260px;
+      }
+
+      /* Sections padding */
+      .section-inner { padding: 50px 20px; }
+      #contact { padding: 50px 20px; }
+
+      /* Course cards */
+      .course-card { padding: 20px; }
+    }
   </style>
 </head>
 <body>
@@ -444,7 +515,28 @@
   </main>
 
   <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+    // Auto-update copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('nav-mobile');
+
+    hamburger.addEventListener('click', function () {
+      mobileNav.classList.toggle('open');
+    });
+
+    // Close mobile nav when a link is clicked
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+    }
+
+    // Close mobile nav if user clicks outside it
+    document.addEventListener('click', function (e) {
+      if (!mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
+        mobileNav.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>
