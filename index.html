@@ -209,6 +209,89 @@
 
 /* === About Me specifics === */
 #about { background: var(--bg); }
+
+/* === Baby Massage section === */
+#massage { background: var(--accent-light); }
+/* Image appears on the LEFT — reverse the column order */
+#massage .two-col { flex-direction: row-reverse; }
+
+/* === Courses section === */
+#courses { background: var(--bg); }
+.courses-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.course-card {
+  border-left: 3px solid var(--accent);
+  padding: 24px 32px;
+  margin-bottom: 32px;
+  background: var(--accent-light);
+  border-radius: 0 4px 4px 0;
+}
+.course-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--accent-dark);
+  margin-bottom: 12px;
+}
+.course-card p { margin-bottom: 10px; }
+.cta-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.cta-link:hover { color: var(--accent); }
+
+/* === Contact section === */
+#contact {
+  position: relative;
+  padding: var(--section-pad) 40px;
+  background: url('images/background.jpg') center center / cover no-repeat;
+  text-align: center;
+}
+#contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.78);
+}
+.contact-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0 auto;
+}
+#contact h2 {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin-bottom: 24px;
+  letter-spacing: 0.03em;
+}
+.contact-detail {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.contact-detail a {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.contact-detail a:hover { color: var(--accent); }
+.contact-footer {
+  margin-top: 40px;
+  font-size: 0.82rem;
+  color: #888;
+}
+.contact-footer a {
+  color: #888;
+  text-decoration: underline;
+}
   </style>
 </head>
 <body>
@@ -283,11 +366,85 @@
     </div>
   </div>
 </section>
-    <section id="massage"><!-- Task 6 --></section>
-    <section id="courses"><!-- Task 7 --></section>
-    <section id="contact"><!-- Task 8 --></section>
+    <section id="massage">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="col-text">
+        <!-- EDIT: Baby Massage heading -->
+        <h2>Baby Massage</h2>
+        <!-- EDIT: What baby massage is -->
+        <p>Baby massage is a simple, loving practice of using gentle touch to communicate with your baby. Drawing on techniques from Indian massage, Swedish massage, reflexology, and baby yoga, it is specifically designed for babies from birth up to around twelve months old.</p>
+        <!-- EDIT: Benefits paragraph -->
+        <p>Research consistently shows that regular massage helps to strengthen the bond between parent and baby, supports healthy physical development, aids digestion and sleep, and can be a meaningful source of comfort for babies experiencing colic or overstimulation. For parents, the quiet ritual of massage can ease the emotional challenges of the postnatal period and build confidence in reading your baby's cues.</p>
+        <!-- EDIT: Encouraging closing line -->
+        <p>You do not need any prior experience — just a willingness to be present with your baby. I will guide you through every stroke, every step of the way.</p>
+      </div>
+      <div class="col-img">
+        <!-- EDIT: replace with a suitable baby massage image, e.g. src="images/baby-massage.jpg" -->
+        <img
+          src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&q=80"
+          alt="Parent giving baby a gentle massage"
+        />
+        <!-- NOTE: Unsplash placeholder — replace with a preferred image. -->
+      </div>
+    </div>
+  </div>
+</section>
+    <section id="courses">
+  <div class="section-inner">
+    <!-- EDIT: Courses heading -->
+    <h2>Courses</h2>
+    <div class="courses-inner">
+
+      <div class="course-card">
+        <!-- EDIT: Group course heading -->
+        <h3>5-Week Group Course</h3>
+        <!-- EDIT: Group course description -->
+        <p>My signature course runs across five weekly sessions, each lasting 90 minutes. Together we work through a complete sequence of baby massage techniques at a gentle, unhurried pace — so that by the end you feel confident and at ease practising at home.</p>
+        <!-- EDIT: Group / social element -->
+        <p>Groups are kept intentionally small, creating a warm and relaxed atmosphere. Many parents find the course becomes a highlight of their week — a chance to slow down, connect with their baby, and meet other local families at the same stage of the journey.</p>
+        <!-- EDIT: Contact prompt for group course -->
+        <a class="cta-link" href="#contact">Get in touch to find out about upcoming dates &rarr;</a>
+      </div>
+
+      <div class="course-card">
+        <!-- EDIT: 1:1 heading -->
+        <h3>One-to-One Sessions</h3>
+        <!-- EDIT: 1:1 description -->
+        <p>Prefer a more personalised experience? I also offer one-to-one instruction, tailored entirely around you and your baby. This is a wonderful option if group settings feel overwhelming, if your baby has specific needs, or if you simply prefer the flexibility of a private session.</p>
+        <!-- EDIT: Contact prompt for 1:1 -->
+        <a class="cta-link" href="#contact">Contact me to arrange a session &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+    <section id="contact">
+  <div class="contact-inner">
+    <!-- EDIT: Contact heading -->
+    <h2>Contact Me</h2>
+    <!-- EDIT: Instructor name -->
+    <p class="contact-detail">Katherine Rivers</p>
+    <!-- EDIT: update email address when domain is live -->
+    <p class="contact-detail">
+      <a href="mailto:contact@babyandpalm.co.uk">contact@babyandpalm.co.uk</a>
+    </p>
+    <!-- EDIT: location line -->
+    <p class="contact-detail">Petersfield, Hampshire</p>
+
+    <!-- Footer line -->
+    <div class="contact-footer">
+      <!-- EDIT: update href when Terms page is created -->
+      <a href="#">Terms &amp; Conditions</a>
+      &nbsp;&middot;&nbsp;
+      &copy; <span id="year"></span> Baby &amp; Palm
+    </div>
+  </div>
+</section>
   </main>
 
-  <script>/* Task 9 */</script>
+  <script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
